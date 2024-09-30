@@ -29,7 +29,7 @@ class PhonesController extends Controller
             }
         }
 
-        $personName = $personId ? Persons::find($personId)->full_name : null;
+        $personName = $personId ? optional(Persons::find($personId))->full_name : null;
 
         return view('phones.index', compact('phones', 'showDischarges', 'personId', 'personName'));
     }
@@ -57,9 +57,11 @@ class PhonesController extends Controller
         //dd($validatedData); // Muestra los datos enviados
 
         // Crear un nuevo celular en la base de datos
-        Phones::create([
+        /*Phones::create([
             'phone_number' => $validatedData['phone_number'],
-        ]);
+        ]);*/
+
+        Phones::create($validatedData);
 
         // Redirigir a alguna ruta (como la lista de usuarios)
         return redirect()->route('phones.index')->with('success', 'Phone created successfully');

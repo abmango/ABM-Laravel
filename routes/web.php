@@ -8,7 +8,9 @@ use App\Http\Controllers\PhonesController;
 Route::put('persons/{id}/restore', [PersonsController::class, 'restore'])->name('persons.restore');
 Route::put('phones/{id}/restore', [PhonesController::class, 'restore'])->name('phones.restore');
 
+Route::get('phones/create', [PhonesController::class, 'create'])->name('phones.create');
 Route::get('/phones/{personId?}', [PhonesController::class, 'index'])->name('phones.index');
+
 
 Route::get('/', function () {
     return view('welcome');
